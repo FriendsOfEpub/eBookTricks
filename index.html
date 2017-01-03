@@ -191,6 +191,36 @@ code {
 </div>
 </section>
 
+<section class="trick" id="typo-semantic_asterism">
+<div class="wrapper">
+<h3>Use semantic asterisms and make them reflowable</h3>
+
+<pre><code>hr.asterism {
+  height: 1.5em;
+  background: transparent url("../Images/asterism.svg") no-repeat center;
+  background-size: 2.5em 1.25em;
+  overflow: hidden;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+@supports not ((page-break-inside: avoid) and (break-inside: avoid)) {
+  hr.asterism {
+    -webkit-column-break-inside: avoid;
+  }
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">Asterisms are thematic break, thus <a title="EPUB 3 Accessibility Guidelines — Context Breaks" href="https://idpf.github.io/a11y-guidelines/content/xhtml/context.html">you should use <code>hr</code></a>.</p>
+<p class="details-para">Problem is <code>hr</code> can’t contain anything so the only solution is to use a background image.</p>
+<p class="details-para">Your best option is <abbr title="Scalable Vector Graphics">SVG</abbr> since it manages transparency, reflow without a loss in quality, can be designed to be compatible with night modes, etc.</p>
+<p class="details-para">Reading Systems which don’t support <code>background-size</code> will fall back to the <code>width</code>, <code>height</code> and <code>viewbox</code> attributes in your SVG –&nbsp;don’t get rid of them.</p>
+</div>
+</div>
+</section>
+
 <section class="trick" id="typo-fake_asterism">
 <div class="wrapper">
 <h3>Fake asterisms (thematic break)</h3>
@@ -205,28 +235,6 @@ code {
 <p class="details-para">Sometimes you can’t use semantic asterisms (<code>background-image</code> for <code>hr</code>) and adding it with <code>hr:before</code> may prove to be problematic for accessibility.</p>
 <p class="details-para">In that case, the ARIA <code>role</code> and <code>aria-label</code> attributes may come in handy.</p>
 <p class="details-para"><a href="https://www.w3.org/TR/wai-aria/roles#separator">The <code>separator</code> role</a> tells Reading Systems the <code>div</code> is intended to be a thematic break (<code>hr</code>) and the <code>aria-label</code> will override the text inside it for Text to Speech.</p>
-</div>
-</div>
-</section>
-
-<section class="trick" id="typo-semantic_asterism">
-<div class="wrapper">
-<h3>Use semantic asterisms and make them reflowable</h3>
-
-<pre><code>hr {
-  height: 1.5em;
-  background: transparent url("../Images/asterism.svg") no-repeat center;
-  background-size: 2.5em 1.25em;
-  overflow: hidden;
-}
-</code></pre>
-
-<h4 class="summary">Details</h4>
-<div class="details">
-<p class="details-para">Asterisms are thematic break, thus <a title="EPUB 3 Accessibility Guidelines — Context Breaks" href="https://idpf.github.io/a11y-guidelines/content/xhtml/context.html">you should use <code>hr</code></a>.</p>
-<p class="details-para">Problem is <code>hr</code> can’t contain anything so the only solution is to use a background image.</p>
-<p class="details-para">Your best option is <abbr title="Scalable Vector Graphics">SVG</abbr> since it manages transparency, reflow without a loss in quality, can be designed to be compatible with night modes, etc.</p>
-<p class="details-para">Reading Systems which don’t support <code>background-size</code> will fall back to the <code>width</code>, <code>height</code> and <code>viewbox</code> attributes.</p>
 </div>
 </div>
 </section>
@@ -271,7 +279,7 @@ code {
 <h4 class="summary">Details</h4>
 <div class="details">
 <p class="details-para">Did you know most of <abbr title="HyperText Markup Language">HTML</abbr> elements have a default <code>display</code> value of <code>inline</code>? It’s up to browsers to set some elements to <code>block</code>.</p>
-<p class="details-para">Since the legacy RMSDK is not supposed to support HTML5, this means you should set HTML5 grouping elements to <code>block</code>.</p>
+<p class="details-para">Since the legacy RMSDK is not supposed to support HTML5, you should set grouping elements to <code>block</code> youself.</p>
 </div>
 </div>
 </section>
@@ -325,6 +333,7 @@ element-2 {
 <pre><code>table {
   table-layout: fixed;
 }
+
 th.third {
   width: 33%;
 }
@@ -540,7 +549,7 @@ svg {
 
 <h4 class="summary">Details</h4>
 <div class="details">
-<p class="details-para">If you want borders, backgrounds or <abbr title="Scalable Vector Graphics">SVG</abbr>’s fill to be the same color as text, including night modes, <code>currentColor</code> is your best bet.</p>
+<p class="details-para">If you want borders, backgrounds or <abbr title="Scalable Vector Graphics">SVG</abbr>’s fill to be the same color as text, including in night modes, <code>currentColor</code> is your best bet.</p>
 <p class="details-para">Indeed, <code>currentColor</code> sort of behaves like a variable: <a href="https://css-tricks.com/currentcolor/">it inherits the current color of text</a>.</p>
 <p class="details-para">In other words, when Reading Systems set a light color for text in night mode, <code>currentColor</code> will become this color.</p>
 </div>
@@ -566,6 +575,27 @@ svg {
 </div>
 </section>
 
+<section class="trick" id="misc-supports">
+<div class="wrapper">
+<h3>Prevent unsupported styles from impacting legacy&nbsp;<abbr title="Adobe Reader Mobile Software Development Kit">RMSDK</abbr></h3>
+
+<pre><code>@supports ({property}: {value}) {
+  element {
+    {property}: {value};
+  }
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">If you want to do <a title="Progressive enhancements make books progressive" href="http://www.booknetcanada.ca/blog/2016/12/12/progressive-enhancements-make-books-progressive">progressive enhancement</a> and don't want to risk your stylesheet being entierely ignored in legacy RMSDK, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@supports">feature queries</a> are the way to go.</p>
+<p class="details-para">Besides asking Reading Systems if they support a <abbr title="Cascading Style Sheets">CSS</abbr> declaration, it will basically protect the nested styles from being parsed by the legacy RMSDK –&nbsp;can be pretty useful with the CSS <code>calc()</code> function for instance.</p>
+<p class="details-para">And <code>@supports</code> can protect media queries too.</p>
+<p class="details-para">The only downside is that Internet Explorer&nbsp;11 doesn't support feature queries and Adobe Digital Editions&nbsp;4.5 is using this rendering engine… As a consequence, those styles won't be applied even though Internet Explorer supports them.</p>
+</div>
+</div>
+</section>
+
 <section class="trick" id="misc-kindle">
 <div class="wrapper">
 <h3>Declare specific styles for Kindle</h3>
@@ -583,27 +613,6 @@ svg {
 <div class="details">
 <p class="details-para">If for some reason you must add or override styles for Kindle, those two media queries can help. KindleGen will indeed take them into account when converting your <abbr title="Electronic Publication">EPUB</abbr> file.</p>
 <p class="details-para"><strong>Do not ever let them empty in your EPUB file</strong> since that would crash the legacy <abbr title="Adobe Reader Mobile Software Development Kit">RMSDK</abbr> and all the Reading Systems using it.</p>
-</div>
-</div>
-</section>
-
-<section class="trick" id="misc-supports">
-<div class="wrapper">
-<h3>Prevent unsupported styles from impacting legacy&nbsp;<abbr title="Adobe Reader Mobile Software Development Kit">RMSDK</abbr></h3>
-
-<pre><code>@supports ({property}: {value}) {
-  element {
-    {property}: {value};
-  }
-}
-</code></pre>
-
-<h4 class="summary">Details</h4>
-<div class="details">
-<p class="details-para">If you want to do <a title="Progressive enhancements make books progressive" href="http://www.booknetcanada.ca/blog/2016/12/12/progressive-enhancements-make-books-progressive">progressive enhancement</a> and don't want to risk your stylesheet being entierely ignored in legacy RMSDK, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@supports">feature queries</a> are the way to go.</p>
-<p class="details-para">Besides asking Reading Systems if they support a <abbr title="Cascading Style Sheets">CSS</abbr> property, it will basically protect the nested styles from being parsed by the legacy RMSDK –&nbsp;can be pretty useful with the CSS <code>calc()</code> function for instance.</p>
-<p class="details-para">And <code>@supports</code> can protect media queries too.</p>
-<p class="details-para">The only downside is that Internet Explorer&nbsp;11 doesn't support feature queries and Adobe Digital Editions&nbsp;4.5 is using this rendering engine… As a consequence, those styles won't be applied even though Internet Explorer supports them.</p>
 </div>
 </div>
 </section>
@@ -653,7 +662,7 @@ svg {
 </main>
 
   <footer>
-  	<p class="secondary">Version 0.11 (codename “<abbr title="Minimum Viable Product">MVP</abbr>”)<br/><a href="https://github.com/FriendsOfEpub/eBookTricks/blob/master/LICENSE">LGPLv3 Licence</a> | <a href="https://github.com/FriendsOfEpub/eBookTricks">Source</a></p>
+  	<p class="secondary">Version 0.12 (codename “<abbr title="Minimum Viable Product">MVP</abbr>”)<br/><a href="https://github.com/FriendsOfEpub/eBookTricks/blob/master/LICENSE">LGPLv3 Licence</a> | <a href="https://github.com/FriendsOfEpub/eBookTricks">Source</a></p>
     <p class="secondary">This tool is part of the <a href="https://github.com/FriendsOfEpub/Blitz">Blitz eBook Framework</a></p>
   </footer>
   
