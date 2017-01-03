@@ -322,8 +322,12 @@ a {
 	font-weight: 600;
 }
 
+a code {
+  font-weight: 700;
+}
+
 .summary {
-	font-weight: 500;
+	font-weight: 700;
 	margin: 32px 0 16px 2px;
 	margin: 3.3rem 0 1.65rem 2rem;
 	position: relative;
