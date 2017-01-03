@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Blitz Tricks — CSS tricks to improve your eBooks</title>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/styles.css" />
+  <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+  <!-- Favicon -->
+	<link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+	<!-- Google -->
+	<link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FAFAFA">
+	<!-- Apple -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="BlitzTricks">
+	<link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+	<!-- MS -->
+	<meta name="msapplication-TileImage" content="assets/icons/icon-144x144.png">
+	<meta name="msapplication-TileColor" content="#FAFAFA">
+	<meta name="application-name" content="BlitzTricks">
+</head>
+<body>
+<nav class="menu">
+  <ol>
+    <li><a href="#typography">Typo</a></li>
+    <li><a href="#layout">Layout</a></li>
+    <li><a href="#images">Images</a></li>
+    <li><a href="#misc">Misc</a></li>
+  </ol>
+</nav>
+
+  <header>
+    <img class="header-icon" alt="Blitz" src="assets/blitz-16.svg"/>
+
+    <h1>Blitz eBook&nbsp;Tricks</h1>
+
+    <p class="lead">A collection of <abbr title="Cascading Style Sheets">CSS</abbr> snippets to do progressive enhancement and achieve better typography, layout and <abbr title="User Experience">UX</abbr> in&nbsp;eBooks.</p>
+
+    <p class="lead">Those snippets are primarily intended for <abbr title="Electronic Publication">EPUB</abbr>3 though some will work in ePub2 and/or&nbsp;Kindle.</p>
+    
+    <p class="lead"><a href="https://github.com/FriendsOfEpub/eBookTricks">Please visit the Github repo</a> if you want to report&nbsp;issues, suggest&nbsp;tricks, improve&nbsp;design or contribute&nbsp;code.</p>
+  </header>
+
+<main>
+<section class="category" id="typography">
+<h2>Typography</h2>
+
+<section class="trick" id="typo-lineheight">
+<div class="wrapper">
+<h3>Add line-height to&nbsp;body</h3>
+
+<pre><code>body {
+  line-height: 1.5;
+}
+
+body * {
+  line-height: inherit;
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">If you add an explicit line-height to elements, your <abbr title="Cascading Style Sheets">CSS</abbr> may break Kindle’s and Kobo’s user setting. By adding it to <code>body</code> and letting elements inherit from it, this problem is solved.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="typo-hyphens">
+<div class="wrapper">
+<h3>Disable hyphens</h3>
+
+<pre><code>element {
+  adobe-hyphenate: none;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  -epub-hyphens: none;
+  hyphens: none;
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">Usually, some elements like headings, centered text, captions, etc. should not be hyphenated.</p>
+<p class="details-para">Those declarations should cover all self-respecting Reading Systems.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="typo-sup">
+<div class="wrapper">
+<h3>Prevent sub- and superscript from affecting line-height</h3>
+
+<pre><code>sub {
+  font-size: 0.675em;
+  line-height: 1.2;
+  vertical-align: sub;
+  vertical-align: -20%;
+}
+
+sup {
+  font-size: 0.675em;
+  line-height: 1.2;
+  vertical-align: super;
+  vertical-align: 35%;
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">Sub- and superscript will affect line-height if you just use their dedicated keyword for <code>vertical-align</code>.</p>
+<p class="details-para">By decreasing <code>line-height</code> to the minimum value Kindle supports (i.e. <code>1.2</code>) and using <code>%</code> for <code>vertical-align</code>, we solve this problem and can vertically-align sub- and superscript more accurately.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="typo-legibility">
+<div class="wrapper">
+<h3>Improve legibility</h3>
+
+<pre><code>body {
+  font-kerning: normal;
+  font-variant: common-ligatures oldstyle-nums proportional-nums;
+  font-feature-settings: "kern", "liga", "clig", "onum", "pnum";
+}
+
+h1, h2, h3 {
+  font-variant: common-ligatures lining-nums proportional-nums;
+  font-feature-settings: "kern", "liga", "clig", "lnum", "pnum";
+}
+
+table {
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "kern", "lnum", "tnum";
+}
+
+code {
+  font-variant: no-common-ligatures lining-nums;
+  font-feature-settings: "kern" 0, "liga" 0, "clig" 0, "lnum";
+}
+
+.fraction {
+  font-variant-numeric: diagonal-fractions;
+  font-feature-settings: "frac";
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">OpenType features can dramatically improve the legibility of an eBook. Although not all default fonts provided by Reading Systems support all those features, you can still benefit from them.</p>
+<p class="details-para">The <code>font-feature-settings</code> property is a low-level feature designed to handle special cases where no other way to enable or access an OpenType font feature exists, which is why you should prefer <code>font-variant</code> and its associated longhand properties.</p>
+<p class="details-para">Please note <code>font-feature-settings</code> doesn’t inherit values from the parent element but reset them.</p>
+<p class="details-para">For a complete list of features, <a href="https://helpx.adobe.com/typekit/using/open-type-syntax.html">visit this Typekit help page</a>.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="typo-smallcaps">
+<div class="wrapper">
+<h3>Use real small capitals</h3>
+
+<pre><code>element {
+  font-variant: small-caps;
+}
+
+@supports not (font-variant-caps: small-caps) {
+  element {
+    font-variant: normal;
+    font-feature-settings: "smcp", "onum", "pnum";
+  }
+}
+
+@supports (font-variant-caps: small-caps) {
+  element {
+    font-variant: normal;
+    font-variant-caps: small-caps;
+  }
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">The <code>font-variant:small-caps</code> property creates fake small caps. This can turn a enjoyable book into a mediocre experience since you can tell they are fake in the blink of an eye.</p>
+<p class="details-para">By using OpenType Features, we can use real small caps the typeface designer took special care getting right.</p>
+<p class="details-para">Please note that if the font doesn’t support this feature, it will fall back to fake small caps.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="typo-fake_asterism">
+<div class="wrapper">
+<h3>Fake asterisms (thematic break)</h3>
+
+<pre><code>&lt;div class="asterism" role="separator" aria-label="Interlude"&gt;
+  * * *
+&lt;/div&gt;
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">Sometimes you can’t use semantic asterisms (<code>background-image</code> for <code>hr</code>) and adding it with <code>hr:before</code> may prove to be problematic for accessibility.</p>
+<p class="details-para">In that case, the ARIA <code>role</code> and <code>aria-label</code> attributes may come in handy.</p>
+<p class="details-para"><a href="https://www.w3.org/TR/wai-aria/roles#separator">The <code>separator</code> role</a> tells Reading Systems the <code>div</code> is intended to be a thematic break (<code>hr</code>) and the <code>aria-label</code> will override the text inside it for Text to Speech.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="typo-semantic_asterism">
+<div class="wrapper">
+<h3>Use semantic asterisms and make them reflowable</h3>
+
+<pre><code>hr {
+  height: 1.5em;
+  background: transparent url("../Images/asterism.svg") no-repeat center;
+  background-size: 2.5em 1.25em;
+  overflow: hidden;
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">Asterisms are thematic break, thus <a title="EPUB 3 Accessibility Guidelines — Context Breaks" href="https://idpf.github.io/a11y-guidelines/content/xhtml/context.html">you should use <code>hr</code></a>.</p>
+<p class="details-para">Problem is <code>hr</code> can’t contain anything so the only solution is to use a background image.</p>
+<p class="details-para">Your best option is <abbr title="Scalable Vector Graphics">SVG</abbr> since it manages transparency, reflow without a loss in quality, can be designed to be compatible with night modes, etc.</p>
+<p class="details-para">Reading Systems which don’t support <code>background-size</code> will fall back to the <code>width</code>, <code>height</code> and <code>viewbox</code> attributes.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="typo-links">
+<div class="wrapper">
+<h3>Force the color of links to be text’s</h3>
+
+<pre><code>a.text-color {
+  color: inherit;
+  -webkit-text-fill-color: inherit;
+}
+
+@media amzn-kf8 {
+  parent a.text-color {
+    color: inherit;
+  }
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">Sometimes there are so many links on a page that styling them using colors may disrupt the reading experience. <a title="W3C wiki — Styling Links" href="https://www.w3.org/wiki/Styling_lists_and_links#Styling_Links">As long as users can tell it’s a link</a>, you should be OK.</p>
+<p class="details-para">If you want links to be the same color as text, you can inherit <code>color</code>. The <code>-webkit-text-fill-color</code> property forces iBooks to use the text’s color in night mode.</p>
+</div>
+</div>
+</section>
+</section>
+
+<section class="category" id="layout">
+<h2>Layout</h2>
+
+<section class="trick" id="layout-block">
+<div class="wrapper">
+<h3>Make HTML5 tags behave as expected in legacy&nbsp;<abbr title="Adobe Reader Mobile Software Development Kit">RMSDK</abbr></h3>
+
+<pre><code>article, aside, figure, figcaption, footer, header, main, nav, section {
+  display: block;
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">Did you know most of <abbr title="HyperText Markup Language">HTML</abbr> elements have a default <code>display</code> value of <code>inline</code>? It’s up to browsers to set some elements to <code>block</code>.</p>
+<p class="details-para">Since the legacy RMSDK is not supposed to support HTML5, this means you should set HTML5 grouping elements to <code>block</code>.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="layout-margin_reflow">
+<div class="wrapper">
+<h3>Prevent horizontal margins to reflow with font-size</h3>
+
+<pre><code>element-1 {
+  margin-left: {number}%;
+}
+
+element-2 {
+  padding-left: {number}%;
+  padding-right: {number}%;
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">If you use <code>em</code> for horizontal margins, they will increase/decrease with the <code>font-size</code> user setting. This implies that the bigger the text is set, the smaller its container will be –&nbsp;it should be the opposite.</p>
+<p class="details-para">By using <code>%</code> for horizontal margins and paddings, Reading Systems will use the width of the page or parent container to compute them, not the current <code>font-size</code>.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="layout-center">
+<div class="wrapper">
+<h3>Center a block element in legacy&nbsp;<abbr title="Adobe Reader Mobile Software Development Kit">RMSDK</abbr></h3>
+
+<pre><code>element {
+  width: {number}%;
+  margin-left: ((100 - {number}) / 2 )%;
+  margin-right: ((100 - {number}) / 2 )%;
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">Legacy RMSDK doesn’t really support the <code>auto</code> value for <code>margin</code>. As a matter of fact, it kinda supports it by mapping <code>auto</code> to <code>0</code>, which is <a href="http://www.idpf.org/epub/20/spec/OPS_2.0.1_draft.htm#Section3.3">allowed in a footnote of the <abbr title="Electronic Publication">ePub</abbr>2 specifications</a>.</p>
+<p class="details-para">In other words, if you want to center an element, you should declare a <code>width</code> then substract it from <code>100</code> and divide it by <code>2</code> to get your horizontal margins.</p>
+<p class="details-para">If your element is <code>80%</code> then each margin will be <code>(100-80)/2</code> or <code>10%</code>.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="layout-table">
+<div class="wrapper">
+<h3>Fix the layout of&nbsp;tables</h3>
+
+<pre><code>table {
+  table-layout: fixed;
+}
+th.third {
+  width: 33%;
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">By default, you can’t really tell how Reading Systems will compute the width of tables’ columns. All you know is that they will compute those widths depending on cells’ contents.</p>
+<p class="details-para"><a href="https://css-tricks.com/fixing-tables-long-strings/">You can force a width for each column</a> by adding <code>table-layout:fixed</code> to <code>table</code> then declaring a <code>width</code> for each element in the first line.</p>
+<p class="details-para">Reading Systems will now use the width specified for those elements to compute the width of each column.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="layout-numbering">
+<div class="wrapper">
+<h3>Build an automated numbering system</h3>
+
+<pre><code>parent {
+  counter-increment: elements;
+}
+
+element:before {
+  content: counter(elements);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">Although it won't work in legacy <abbr title="Adobe Reader Mobile Software Development Kit">RMSDK</abbr>, this <abbr title="Cascading Style Sheets">CSS</abbr> snippet can be useful for numbered lines of code, headings, poetry, etc.</p>
+<p class="details-para">Make sure to disable selection in some cases; nobody wants to copy-paste code with numbers breaking it.</p>
+<p class="details-para"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Using_CSS_counters">Check this <abbr title="Mozilla Developer Network">MDN</abbr> tutorial</a> for further details.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="layout-grid">
+<div class="wrapper">
+<h3>Build a super simple responsive grid</h3>
+
+<pre><code>@supports (display: -webkit-flex) or (display: flex) {
+  ul.grid,
+  ol.grid {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-flex: 1 1 15em;
+    flex: 1 1 15em;
+  }
+
+  ul.grid li,
+  ol.grid li {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">What if you could make the most of the page’s width for, say, a table of contents or a list of ingredients?</p>
+<p class="details-para">By using flexbox, you can create a responsive grid which should behave according to a preferred width (the third value in <code>flex</code> e.g. <code>15em</code>).</p>
+<p class="details-para">Of course you may want to provide a fallback for Reading Systems which don't support flexbox.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="layout-valign">
+<div class="wrapper">
+<h3>Vertically-align elements on a&nbsp;page</h3>
+
+<pre><code>@supports (display: -webkit-flex) or (display: flex) {
+  parent {
+    min-height: 95vh;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: {value};
+    justify-content: {value};
+  }
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">Pages of an eBook don’t have a middle or a bottom, right? With flexbox, they now do.</p>
+<p class="details-para">Make sure to use the <code>min-height</code> property so that the container’s height can grow in case the user sets a huge <code>font-size</code>… or else contents will collapse.</p>
+<p class="details-para">If you’re not familiar with flex properties and values, check <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">CSS-Tricks’ complete guide to&nbsp;flexbox</a>.</p>
+<p class="details-para">Finally, you should provide a fallback for Reading Systems which don't support flexbox.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="layout-wrap">
+<div class="wrapper">
+<h3>Give text wraps a modern twist</h3>
+
+<pre><code>element {
+  float: left;
+}
+
+@supports (-webkit-shape-outside: {value}) or (shape-outside: {value}) {
+  element {
+    -webkit-shape-outside: {value};
+    shape-outside: {value};
+    -webkit-clip-path: {value};
+    clip-path: {value};
+  }
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">For decades, text has wrapped around the floated element’s bouding box, which means it couldn’t wrap the object like it does in <abbr title="Desktop Publishing">DTP</abbr> software.</p>
+<p class="details-para">By using <code>shape-outside</code> and <code>clip-path</code>, you can define a shape around which the text should wrap.</p>
+<p class="details-para">And there’s even a <a href="https://chrome.google.com/webstore/detail/css-shapes-editor/nenndldnbcncjmeacmnondmkkfedmgmp">Chrome extension to help you do that</a>.</p>
+</div>
+</div>
+</section>
+</section>
+
+<section class="category" id="images">
+<h2>Images</h2>
+
+<section class="trick" id="images-ratio">
+<div class="wrapper">
+<h3>Force images to keep their aspect ratio</h3>
+
+<pre><code>img {
+  object-fit: contain;
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">When sizing images based on <code>width</code> or <code>height</code>, you’ll probably end with distorted images in some contexts. It turns out <a title="MDN — object-fit" href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit">there is a <abbr title="Cascading Style Sheets">CSS</abbr> property to manage that</a>.</p>
+<p class="details-para">Get used to add <code>object-fit:contain</code> to <code>img</code> as this property prevent this distortion.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="images-caption">
+<div class="wrapper">
+<h3>Keep an image with its caption</h3>
+
+<pre><code>figure {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+@supports not ((page-break-inside: avoid) and (break-inside: avoid)) {
+  figure {
+    -webkit-column-break-inside: avoid;
+  }
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">Readability is as important as legibility and this is why you should take care of the relationship between elements.</p>
+<p class="details-para">For best comprehension, the image and its caption should be displayed on the same page so let’s avoid a page-break inside figures.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="images-reflow">
+<div class="wrapper">
+<h3>Make an image responsive to its caption’s font-size</h3>
+
+<pre><code>@supports (height: calc(98vh - 5em)) {
+  img {
+    width: auto;
+    max-width: 100%;
+    min-height: 300px;
+    height: calc(98vh - 5em);
+    max-height: 95%;
+    object-fit: contain;
+  }
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">For images with a portrait aspect ratio, you must go the extra mile so that the image and (part of) its caption are displayed on the same page.</p>
+<p class="details-para">This is where the <abbr title="Cascading Style Sheets">CSS</abbr> <code>calc()</code> function really shines. It allows you to dynamically compute the height of an image depending on the current <code>font-size</code>.</p>
+<p class="details-para">In this example, the image’s height should ideally be 98% of the page minus 3 lines of text (with a <code>line-height</code> of <code>1.5</code>). Finally, <code>min-</code> and <code>max-height</code> provide a range for the image sizing.</p>
+</div>
+</div>
+</section>
+</section>
+
+<section class="category" id="misc">
+<h2>Misc.</h2>
+
+<section class="trick" id="misc-currentColor">
+<div class="wrapper">
+<h3>Use text color as a&nbsp;variable</h3>
+
+<pre><code>element {
+  border: 1px solid currentColor;
+}
+
+svg {
+  fill: currentColor;
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">If you want borders, backgrounds or <abbr title="Scalable Vector Graphics">SVG</abbr>’s fill to be the same color as text, including night modes, <code>currentColor</code> is your best bet.</p>
+<p class="details-para">Indeed, <code>currentColor</code> sort of behaves like a variable: <a href="https://css-tricks.com/currentcolor/">it inherits the current color of text</a>.</p>
+<p class="details-para">In other words, when Reading Systems set a light color for text in night mode, <code>currentColor</code> will become this color.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="misc-epubtype">
+<div class="wrapper">
+<h3>Style epub:type</h3>
+
+<pre><code>@namespace epub "http://www.idpf.org/2007/ops";
+
+[epub|type~="toc"] {
+  /* styles */
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">Problem with <code>epub:type</code> is that you have to escape the colon in <abbr title="Cascading Style Sheets">CSS</abbr>…</p>
+<p class="details-para">Unless you declare a namespace at the top of your style sheet. You can now use <code>epub|style</code> instead of <code>epub\:style</code>, which is a lot more readable and maintainable.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="misc-kindle">
+<div class="wrapper">
+<h3>Declare specific styles for Kindle</h3>
+
+<pre><code>@media amzn-kf8 {
+  /* Specific KF8 styles (new format) */
+}
+
+@media amzn-mobi {
+  /* Specific Mobi7 styles (old format) */
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">If for some reason you must add or override styles for Kindle, those two media queries can help. KindleGen will indeed take them into account when converting your <abbr title="Electronic Publication">EPUB</abbr> file.</p>
+<p class="details-para"><strong>Do not ever let them empty in your EPUB file</strong> since that would crash the legacy <abbr title="Adobe Reader Mobile Software Development Kit">RMSDK</abbr> and all the Reading Systems using it.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="misc-supports">
+<div class="wrapper">
+<h3>Prevent unsupported styles from impacting legacy&nbsp;<abbr title="Adobe Reader Mobile Software Development Kit">RMSDK</abbr></h3>
+
+<pre><code>@supports ({property}: {value}) {
+  element {
+    {property}: {value};
+  }
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">If you want to do <a title="Progressive enhancements make books progressive" href="http://www.booknetcanada.ca/blog/2016/12/12/progressive-enhancements-make-books-progressive">progressive enhancement</a> and don't want to risk your stylesheet being entierely ignored in legacy RMSDK, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@supports">feature queries</a> are the way to go.</p>
+<p class="details-para">Besides asking Reading Systems if they support a <abbr title="Cascading Style Sheets">CSS</abbr> property, it will basically protect the nested styles from being parsed by the legacy RMSDK –&nbsp;can be pretty useful with the CSS <code>calc()</code> function for instance.</p>
+<p class="details-para">And <code>@supports</code> can protect media queries too.</p>
+<p class="details-para">The only downside is that Internet Explorer&nbsp;11 doesn't support media queries and Adobe Digital Editions&nbsp;4.5 is using this rendering engine… As a consequence, those styles won't be applied even though Internet Explorer supports them.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="misc-monochrome">
+<div class="wrapper">
+<h3>Style for monochrome</h3>
+
+<pre><code>@media (monochrome) {
+  /* Styles */
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">Although this media query won't work with eInk devices, it can help solve accessibility issues.</p>
+<p class="details-para">MacOS and iOS indeed ship with a monochrome switch in system preferences (accessibility panel) which, when enabled, will trigger the <code>monochrome</code> media.</p>
+<p class="details-para">In other words, you could adapt colors to improve contrast for this mode.</p>
+<p class="details-para">Make sure to protect this media query from legacy <abbr title="Adobe Reader Mobile Software Development Kit">RMSDK</abbr>’s parsing because your entire stylesheet could be ignored or, even worse, crash some apps and devices.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="misc-pointer">
+<div class="wrapper">
+<h3>Style for touch or click input</h3>
+
+<pre><code>@media (pointer: coarse) {
+  /* Styles for touch input */
+}
+
+@media (pointer: fine) {
+  /* Styles for mouse input */
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">Footnote references styled as in print (superscript) might provide users with a mediocre experience on touch devices. Fortunately, there is a media for such a case.</p>
+<p class="details-para">The <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer"><code>pointer</code> media</a> returns the accuracy of the primary input mechanism of the device, which means touch will return <code>coarse</code> while mouse will return <code>fine</code> for instance.</p>
+<p class="details-para">In other words, you could increase the size of clickable elements for <code>coarse</code>.</p>
+<p class="details-para">Make sure to protect this media query from legacy <abbr title="Adobe Reader Mobile Software Development Kit">RMSDK</abbr>’s parsing because your entire stylesheet could be ignored or, even worse, crash some apps and devices.</p>
+</div>
+</div>
+</section>
+</section>
+</main>
+
+  <footer>
+  	<p class="secondary">Version 0.10 (codename “<abbr title="Minimum Viable Product">MVP</abbr>”)<br/><a href="https://github.com/FriendsOfEpub/eBookTricks/blob/master/LICENSE">LGPLv3 Licence</a> | <a href="https://github.com/FriendsOfEpub/eBookTricks">Source</a></p>
+    <p class="secondary">This tool is part of the <a href="https://github.com/FriendsOfEpub/Blitz">Blitz eBook Framework</a></p>
+  </footer>
+  
+  <script type="text/javascript" src="js/script.js"></script>
+  <script type="text/javascript">
+  if (navigator.serviceWorker) {
+    navigator.serviceWorker.register('/eBookTricks/sw.js', {scope: '/eBookTricks/'})
+  }  else if ('applicationCache' in window) {
+    var iframe = document.createElement('iframe');
+    iframe.setAttribute('src', '/eBookTricks/appcache.html');
+    iframe.setAttribute('style', 'width: 0; height: 0; border: 0');
+    document.querySelector('footer').appendChild(iframe);
+  }
+  </script>
+</body>
+</html>

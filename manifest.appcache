@@ -1,0 +1,12 @@
+CACHE MANIFEST
+# v0.10
+
+CACHE:
+/eBookTricks/
+/eBookTricks/css/styles.css
+/eBookTricks/assets/blitz-16.svg
+/eBookTricks/assets/favicon.ico
+/eBookTricks/js/script.js
+
+NETWORK:
+*
