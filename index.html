@@ -53,6 +53,8 @@
 <div class="wrapper">
 <h3>Add line-height to&nbsp;body</h3>
 
+<div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
+
 <pre><code>body {
   line-height: 1.5;
 }
@@ -72,6 +74,8 @@ body * {
 <section class="trick" id="typo-hyphens">
 <div class="wrapper">
 <h3>Disable hyphens</h3>
+
+<div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
 
 <pre><code>element {
   adobe-hyphenate: none;
@@ -95,6 +99,8 @@ body * {
 <div class="wrapper">
 <h3>Declare text-align for elements which should be left-aligned</h3>
 
+<div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
+
 <pre><code>element {
   text-align: left;
 }
@@ -111,6 +117,8 @@ body * {
 <section class="trick" id="typo-sup">
 <div class="wrapper">
 <h3>Prevent sub- and superscript from affecting line-height</h3>
+
+<div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
 
 <pre><code>sub {
   font-size: 0.675em;
@@ -138,6 +146,8 @@ sup {
 <section class="trick" id="typo-legibility">
 <div class="wrapper">
 <h3>Improve legibility</h3>
+
+<div class="tags"><span class="tag">EPUB3</span></div>
 
 <pre><code>body {
   font-kerning: normal;
@@ -180,6 +190,8 @@ code {
 <div class="wrapper">
 <h3>Use real small capitals</h3>
 
+<div class="tags"><span class="tag">EPUB3</span></div>
+
 <pre><code>element {
   font-variant: small-caps;
 }
@@ -212,6 +224,8 @@ code {
 <div class="wrapper">
 <h3>Use semantic asterisms and make them reflowable</h3>
 
+<div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
+
 <pre><code>hr.asterism {
   height: 1.5em;
   background: transparent url("../Images/asterism.svg") no-repeat center;
@@ -242,6 +256,8 @@ code {
 <div class="wrapper">
 <h3>Fake asterisms (thematic break)</h3>
 
+<div class="tags"><span class="tag">EPUB3</span></div>
+
 <pre><code>&lt;div class="asterism" role="separator" aria-label="Interlude"&gt;
   * * *
 &lt;/div&gt;
@@ -260,6 +276,8 @@ code {
 <section class="trick" id="typo-links">
 <div class="wrapper">
 <h3>Force the color of links to be text’s</h3>
+
+<div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
 
 <pre><code>a.text-color {
   color: inherit;
@@ -289,6 +307,8 @@ code {
 <div class="wrapper">
 <h3>Make HTML5 tags behave as expected in legacy&nbsp;<abbr title="Adobe Reader Mobile Software Development Kit">RMSDK</abbr></h3>
 
+<div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
+
 <pre><code>article, aside, figure, figcaption, 
 footer, header, main, nav, section {
   display: block;
@@ -306,6 +326,8 @@ footer, header, main, nav, section {
 <section class="trick" id="layout-margin_reflow">
 <div class="wrapper">
 <h3>Prevent horizontal margins to reflow with font-size</h3>
+
+<div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
 
 <pre><code>element-1 {
   margin-left: {number}%;
@@ -329,6 +351,8 @@ element-2 {
 <div class="wrapper">
 <h3>Center a block element in legacy&nbsp;<abbr title="Adobe Reader Mobile Software Development Kit">RMSDK</abbr></h3>
 
+<div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
+
 <pre><code>element {
   width: {number}%;
   margin-left: ((100 - {number}) / 2 )%;
@@ -348,6 +372,8 @@ element-2 {
 <section class="trick" id="layout-table">
 <div class="wrapper">
 <h3>Fix the layout of&nbsp;tables</h3>
+
+<div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
 
 <pre><code>table {
   table-layout: fixed;
@@ -370,6 +396,8 @@ th.third {
 <section class="trick" id="layout-numbering">
 <div class="wrapper">
 <h3>Create an automated numbering system</h3>
+
+<div class="tags"><span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
 
 <pre><code>parent {
   counter-increment: elements;
@@ -396,6 +424,8 @@ element:before {
 <section class="trick" id="layout-grid">
 <div class="wrapper">
 <h3>Build a super simple responsive grid</h3>
+
+<div class="tags"><span class="tag">EPUB3</span></div>
 
 <pre><code>@supports (display: -webkit-flex) or (display: flex) {
   ul.grid,
@@ -429,6 +459,8 @@ element:before {
 <div class="wrapper">
 <h3>Vertically-align elements on a&nbsp;page</h3>
 
+<div class="tags"><span class="tag">EPUB3</span></div>
+
 <pre><code>@supports (display: -webkit-flex) or (display: flex) {
   parent {
     min-height: 95vh;
@@ -455,6 +487,8 @@ element:before {
 <section class="trick" id="layout-wrap">
 <div class="wrapper">
 <h3>Give text wraps a modern twist</h3>
+
+<div class="tags"><span class="tag">EPUB3</span></div>
 
 <pre><code>element {
   float: left;
@@ -487,6 +521,8 @@ element:before {
 <div class="wrapper">
 <h3>Force images to keep their aspect ratio</h3>
 
+<div class="tags"><span class="tag">EPUB3</span></div>
+
 <pre><code>img {
   object-fit: contain;
 }
@@ -503,6 +539,8 @@ element:before {
 <section class="trick" id="images-caption">
 <div class="wrapper">
 <h3>Keep an image with its caption</h3>
+
+<div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span></div>
 
 <pre><code>figure {
   page-break-inside: avoid;
@@ -527,6 +565,8 @@ element:before {
 <section class="trick" id="images-reflow">
 <div class="wrapper">
 <h3>Make an image responsive to its caption’s font-size</h3>
+
+<div class="tags"><span class="tag">EPUB3</span></div>
 
 <pre><code>@supports (height: calc(98vh - 5em)) {
   img {
@@ -557,6 +597,8 @@ element:before {
 <div class="wrapper">
 <h3>Use text color as a&nbsp;variable</h3>
 
+<div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
+
 <pre><code>element {
   border: 1px solid currentColor;
 }
@@ -579,6 +621,8 @@ svg {
 <div class="wrapper">
 <h3>Style epub:type</h3>
 
+<div class="tags"><span class="tag">EPUB3</span></div>
+
 <pre><code>@namespace epub "http://www.idpf.org/2007/ops";
 
 [epub|type~="toc"] {
@@ -597,6 +641,8 @@ svg {
 <section class="trick" id="misc-supports">
 <div class="wrapper">
 <h3>Prevent unsupported styles from impacting legacy&nbsp;<abbr title="Adobe Reader Mobile Software Development Kit">RMSDK</abbr></h3>
+
+<div class="tags"><span class="tag">EPUB3</span></div>
 
 <pre><code>@supports ({property}: {value}) {
   element {
@@ -619,6 +665,8 @@ svg {
 <div class="wrapper">
 <h3>Declare specific styles for Kindle</h3>
 
+<div class="tags"><span class="tag">Kindle</span></div>
+
 <pre><code>@media amzn-kf8 {
   /* Specific KF8 styles (new format) */
 }
@@ -640,6 +688,8 @@ svg {
 <div class="wrapper">
 <h3>Style for monochrome</h3>
 
+<div class="tags"><span class="tag">EPUB3</span></div>
+
 <pre><code>@media (monochrome) {
   /* Styles */
 }
@@ -658,6 +708,8 @@ svg {
 <section class="trick" id="misc-pointer">
 <div class="wrapper">
 <h3>Style for touch or click input</h3>
+
+<div class="tags"><span class="tag">EPUB3</span></div>
 
 <pre><code>@media (pointer: coarse) {
   /* Styles for touch input */
@@ -681,7 +733,7 @@ svg {
 </main>
 
   <footer>
-  	<p class="secondary">Version 0.16 (codename “<abbr title="Minimum Viable Product">MVP</abbr>”)<br/><a href="https://github.com/FriendsOfEpub/eBookTricks/blob/master/LICENSE">LGPLv3 Licence</a> | <a href="https://github.com/FriendsOfEpub/eBookTricks">Source</a></p>
+  	<p class="secondary">Version 0.20 (codename “<abbr title="Minimum Viable Product">MVP</abbr>”)<br/><a href="https://github.com/FriendsOfEpub/eBookTricks/blob/master/LICENSE">LGPLv3 Licence</a> | <a href="https://github.com/FriendsOfEpub/eBookTricks">Source</a></p>
     <p class="secondary">This tool is part of the <a href="https://github.com/FriendsOfEpub/Blitz">Blitz eBook Framework</a></p>
   </footer>
   

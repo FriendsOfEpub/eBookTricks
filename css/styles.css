@@ -194,6 +194,41 @@ section {
 	color: #000;
 }
 
+.tags {
+  font-size: 16px;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.trick:nth-child(odd) .tag {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.trick:nth-child(even) .tag {
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.tag {
+  display: inline-block;
+  margin: 0 0.5em;
+}
+
+.tag:first-child {
+  margin-left: 0;
+}
+
+.tag:before {
+  content: "[ ";
+  position: relative;
+  top: -0.0375em;
+}
+
+.tag:after {
+  content: " ]";
+  position: relative;
+  top: -0.0375em;
+}
+
 footer {
   max-width: 42em;
 	margin: 72px auto 0 auto;
@@ -270,7 +305,9 @@ h2 {
 	margin: 0 0 4.8rem 0;
 }
 
-h3 {}
+h3 {
+  margin: 0;
+}
 
 h4 {
   margin: 32px 0 16px 0;
