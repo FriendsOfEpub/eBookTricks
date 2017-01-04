@@ -91,6 +91,23 @@ body * {
 </div>
 </section>
 
+<section class="trick" id="typo-align">
+<div class="wrapper">
+<h3>Declare text-align for elements which should be left-aligned</h3>
+
+<pre><code>element {
+  text-align: left;
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">If some elements like headings should be left-aligned, make sure to declare <code>text-align</code>.</p>
+<p class="details-para">Indeed, those elements will be justified if you don’t and the user sets full justification. Word-spacing will then be adjusted so that the text falls flush with both margins, which can result in terrible typography.</p>
+</div>
+</div>
+</section>
+
 <section class="trick" id="typo-sup">
 <div class="wrapper">
 <h3>Prevent sub- and superscript from affecting line-height</h3>
@@ -184,7 +201,7 @@ code {
 
 <h4 class="summary">Details</h4>
 <div class="details">
-<p class="details-para">The <code>font-variant:small-caps</code> property creates fake small caps. This can turn a enjoyable book into a mediocre experience since you can tell they are fake in the blink of an eye.</p>
+<p class="details-para">The <code>font-variant:small-caps</code> property creates fake small caps. This can turn an enjoyable book into a mediocre experience since you can tell they are fake in the blink of an eye.</p>
 <p class="details-para">By using OpenType Features, we can use real small caps the typeface designer took special care getting right.</p>
 <p class="details-para">Please note that if the font doesn’t support this feature, it will fall back to fake small caps.</p>
 </div>
@@ -281,7 +298,7 @@ footer, header, main, nav, section {
 <h4 class="summary">Details</h4>
 <div class="details">
 <p class="details-para">Did you know most of <abbr title="HyperText Markup Language">HTML</abbr> elements have a default <code>display</code> value of <code>inline</code>? It’s up to browsers to set some elements to <code>block</code>.</p>
-<p class="details-para">Since the legacy RMSDK is not supposed to support HTML5, you should set grouping elements to <code>block</code> youself.</p>
+<p class="details-para">Since the legacy RMSDK is not supposed to support HTML5, you must set grouping elements to <code>block</code> in your style sheet.</p>
 </div>
 </div>
 </section>
@@ -343,7 +360,7 @@ th.third {
 
 <h4 class="summary">Details</h4>
 <div class="details">
-<p class="details-para">By default, you can’t really tell how Reading Systems will compute the width of tables’ columns. All you know is that they will compute those widths depending on cells’ contents.</p>
+<p class="details-para">By default, you can’t really tell how Reading Systems will compute the width of tables’ columns. All you know is that they will compute those widths depending on their cells’ contents.</p>
 <p class="details-para"><a href="https://css-tricks.com/fixing-tables-long-strings/">You can force a width for each column</a> by using <code>table-layout:fixed</code> then declaring a <code>width</code> for each element in the first line of the table.</p>
 <p class="details-para">Reading Systems will now use the width specified for those elements to compute the width of each column.</p>
 </div>
@@ -401,7 +418,7 @@ element:before {
 
 <h4 class="summary">Details</h4>
 <div class="details">
-<p class="details-para">What if you could make the most of the page’s width for, say, a table of contents or a list of ingredients?</p>
+<p class="details-para">What if you could make the most of the page’s width for, say, an inline table of contents or a list of ingredients?</p>
 <p class="details-para">By using flexbox, you can create a responsive grid which should behave according to a preferred width (the third value in <code>flex</code> e.g. <code>15em</code>).</p>
 <p class="details-para">Of course you may want to provide a fallback for Reading Systems which don't support flexbox.</p>
 </div>
@@ -591,7 +608,7 @@ svg {
 <h4 class="summary">Details</h4>
 <div class="details">
 <p class="details-para">If you want to do <a title="Progressive enhancements make books progressive" href="http://www.booknetcanada.ca/blog/2016/12/12/progressive-enhancements-make-books-progressive">progressive enhancement</a> and don't want to risk your stylesheet being entierely ignored in legacy RMSDK, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@supports">feature queries</a> are the way to go.</p>
-<p class="details-para">Besides asking Reading Systems if they support a <abbr title="Cascading Style Sheets">CSS</abbr> declaration, it will basically protect the nested styles from being parsed by the legacy RMSDK –&nbsp;can be pretty useful with the CSS <code>calc()</code> function for instance.</p>
+<p class="details-para">Besides asking Reading Systems if they support a <abbr title="Cascading Style Sheets">CSS</abbr> declaration, it will basically protect the nested styles from being parsed by the legacy RMSDK. It can be pretty useful with the CSS <code>calc()</code> function for instance.</p>
 <p class="details-para">And <code>@supports</code> can protect media queries too.</p>
 <p class="details-para">The only downside is that Internet Explorer&nbsp;11 doesn't support feature queries and Adobe Digital Editions&nbsp;4.5 is using its rendering engine (Trident) on Windows. As a consequence, those styles won't be applied even though Internet Explorer supports them.</p>
 </div>
@@ -664,7 +681,7 @@ svg {
 </main>
 
   <footer>
-  	<p class="secondary">Version 0.15 (codename “<abbr title="Minimum Viable Product">MVP</abbr>”)<br/><a href="https://github.com/FriendsOfEpub/eBookTricks/blob/master/LICENSE">LGPLv3 Licence</a> | <a href="https://github.com/FriendsOfEpub/eBookTricks">Source</a></p>
+  	<p class="secondary">Version 0.16 (codename “<abbr title="Minimum Viable Product">MVP</abbr>”)<br/><a href="https://github.com/FriendsOfEpub/eBookTricks/blob/master/LICENSE">LGPLv3 Licence</a> | <a href="https://github.com/FriendsOfEpub/eBookTricks">Source</a></p>
     <p class="secondary">This tool is part of the <a href="https://github.com/FriendsOfEpub/Blitz">Blitz eBook Framework</a></p>
   </footer>
   
