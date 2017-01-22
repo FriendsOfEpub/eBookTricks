@@ -71,6 +71,26 @@ body * {
 </div>
 </section>
 
+<section class="trick" id="typo-kindle-lineheight">
+<div class="wrapper">
+<h3>Don’t define a line-height value which is less than&nbsp;1.2</h3>
+
+<div class="tags"><span class="tag">Kindle</span></div>
+
+<pre><code>element {
+  line-height: 1.2;
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">As stated in <a href="https://kindlegen.s3.amazonaws.com/AmazonKindlePublishingGuidelines.pdf">Kindle Publishing Guidelines</a>, “to ensure pagination, the Kindle software does not honor line-height value less than <code>1.2em</code> or <code>120%</code>.”</p>
+
+<p class="details-para">In other words, elements for which line-height is less than <code>1.2</code> will be applied the default’s line-height, which is <code>1.75</code> on most Kindle devices.</p>
+</div>
+</div>
+</section>
+
 <section class="trick" id="typo-hyphens">
 <div class="wrapper">
 <h3>Disable hyphens</h3>
@@ -89,7 +109,7 @@ body * {
 
 <h4 class="summary">Details</h4>
 <div class="details">
-<p class="details-para">Usually, some elements like headings, centered text, captions, etc. should not be hyphenated.</p>
+<p class="details-para">Usually, some elements like headings, centered text, etc. are not hyphenated.</p>
 <p class="details-para">Those declarations should cover all self-respecting Reading Systems.</p>
 </div>
 </div>
@@ -180,7 +200,7 @@ code {
 <div class="details">
 <p class="details-para">OpenType features can dramatically improve the legibility of an eBook. Although not all default fonts provided by Reading Systems support all those features, you can still benefit from them.</p>
 <p class="details-para">The <code>font-feature-settings</code> property is a low-level feature designed to handle special cases where no other way to enable or access an OpenType font feature exists, which is why you should prefer <code>font-variant</code> and its associated longhand properties.</p>
-<p class="details-para">Please note <code>font-feature-settings</code> doesn’t inherit values from the parent element but reset them.</p>
+<p class="details-para">Please note <code>font-feature-settings</code> doesn’t inherit values from the parent element but resets them.</p>
 <p class="details-para">For a complete list of features, <a href="https://helpx.adobe.com/typekit/using/open-type-syntax.html">visit this Typekit help page</a>.</p>
 </div>
 </div>
@@ -244,7 +264,7 @@ code {
 
 <h4 class="summary">Details</h4>
 <div class="details">
-<p class="details-para">Asterisms are thematic break, thus <a title="EPUB 3 Accessibility Guidelines — Context Breaks" href="https://idpf.github.io/a11y-guidelines/content/xhtml/context.html">you should use <code>hr</code></a>.</p>
+<p class="details-para">Asterisms are thematic breaks, thus <a title="EPUB 3 Accessibility Guidelines — Context Breaks" href="https://idpf.github.io/a11y-guidelines/content/xhtml/context.html">you should use <code>hr</code></a>.</p>
 <p class="details-para">Problem is <code>hr</code> can’t contain anything so the only solution is to use a background image.</p>
 <p class="details-para">Your best option is <abbr title="Scalable Vector Graphics">SVG</abbr> since it manages transparency, reflow without a loss in quality, can be designed to be compatible with night modes, etc.</p>
 <p class="details-para">Reading Systems which don’t support <code>background-size</code> will fall back to the <code>width</code>, <code>height</code> and <code>viewbox</code> attributes in your SVG so don’t get rid of them.</p>
@@ -362,9 +382,29 @@ element-2 {
 
 <h4 class="summary">Details</h4>
 <div class="details">
-<p class="details-para">Legacy RMSDK doesn’t really support the <code>auto</code> value for <code>margin</code>. As a matter of fact, it maps <code>auto</code> to <code>0</code>, which is <a href="http://www.idpf.org/epub/20/spec/OPS_2.0.1_draft.htm#Section3.3">allowed in a footnote of the <abbr title="Electronic Publication">ePub</abbr>2 specifications</a>.</p>
+<p class="details-para">Legacy RMSDK doesn’t really support the <code>auto</code> value for <code>margin</code>. As a matter of fact, it maps <code>auto</code> to <code>0</code>, which is <a href="http://www.idpf.org/epub/20/spec/OPS_2.0.1_draft.htm#Section3.3">allowed in a footnote of the <abbr title="Electronic Publication">ePub</abbr>2 specification</a>.</p>
 <p class="details-para">In other words, if you want to center an element, you should declare a <code>width</code> then substract it from <code>100</code> and divide it by <code>2</code> to get your horizontal margins.</p>
 <p class="details-para">If your element is <code>80%</code> then each margin will be <code>(100-80)/2</code> or <code>10%</code>.</p>
+</div>
+</div>
+</section>
+
+<section class="trick" id="layout-pagebreak">
+<div class="wrapper">
+<h3>Prefer page-break-after to page-break-before</h3>
+
+<div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
+
+<pre><code>element {
+  page-break-after: always;
+}
+</code></pre>
+
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">For some reason, it looks like <code>page-break-after:always</code> has got slightly better support than <code>page-break-before:always</code> in some Reading Systems.</p>
+<p class="details-para">As stated in <a href="https://help.apple.com/itc/booksassetguide/e3?lang=en#/itc04314e64a">iBooks Asset Guide</a>, “if you include page breaks to mark a chapter break, use <code>page-break-after</code> to create a break at the end of a chapter, not <code>page-break-before</code> to insert the break at the beginning of the chapter. This modification improves performance with the table of contents.”</p>
+<p class="details-para">In any case, don’t use both since it will create a blank page in some Reading Systems.</p>
 </div>
 </div>
 </section>
@@ -733,7 +773,7 @@ svg {
 </main>
 
   <footer>
-  	<p class="secondary">Version 0.20 (codename “<abbr title="Minimum Viable Product">MVP</abbr>”)<br/><a href="https://github.com/FriendsOfEpub/eBookTricks/blob/master/LICENSE">LGPLv3 Licence</a> | <a href="https://github.com/FriendsOfEpub/eBookTricks">Source</a></p>
+  	<p class="secondary">Version 0.25 (codename “<abbr title="Minimum Viable Product">MVP</abbr>”)<br/><a href="https://github.com/FriendsOfEpub/eBookTricks/blob/master/LICENSE">LGPLv3 Licence</a> | <a href="https://github.com/FriendsOfEpub/eBookTricks">Source</a></p>
     <p class="secondary">This tool is part of the <a href="https://github.com/FriendsOfEpub/Blitz">Blitz eBook Framework</a></p>
   </footer>
   
