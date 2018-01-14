@@ -115,6 +115,31 @@ body * {
 </div>
 </section>
 
+<section class="trick" id="typo-hyphenation">
+<div class="wrapper">
+<h3>Improve hyphenation</h3>
+  
+<div class="tags"><span class="tag">EPUB3</span></div>
+  
+<pre><code>element {
+  -webkit-hyphenate-limit-before: 3;
+  -webkit-hyphenate-limit-after: 2;
+  -ms-hyphenate-limit-chars: 6 3 2;
+  hyphenate-limit-chars: 6 3 2;
+  -webkit-hyphenate-limit-lines: 2;
+  hyphenate-limit-lines: 2;
+}
+</code></pre>
+  
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">When you set hyphens to <code>auto</code>, extra declarations can be set to improve hyphenation for your language.</p>
+<p class="details-para">You can indeed set the minimum number of letters a word must contain to be hyphenated, and the minimum number of letters which should be before and after the hyphen.</p>
+<p class="details-para">Finally, you can control the maximum number of consecutive lines for which hyphenation must happen. <a href="http://webtypography.net/2.4.3">As Bringhurst advised</a>, “avoid more than three consecutive hyphenated lines.”</p>
+</div>
+</div>
+</section>
+
 <section class="trick" id="typo-align">
 <div class="wrapper">
 <h3>Declare text-align for elements which should be left-aligned</h3>
@@ -389,6 +414,33 @@ element-2 {
 </div>
 </section>
 
+<section class="trick" id="layout-break">
+<div class="wrapper">
+<h3>Do not rely on page-breaks</h3>
+    
+<div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span></div>
+    
+<pre><code>element {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+    
+@supports not ((page-break-inside: avoid) and (break-inside: avoid)) {
+  element {
+    -webkit-column-break-inside: avoid;
+  }
+}
+</code></pre>
+    
+<h4 class="summary">Details</h4>
+<div class="details">
+<p class="details-para">CSS break is a strange beast. But what’s important is that we shouldn’t only rely on paged media.</p>
+<p class="details-para">Modern Reading Systems will typically use CSS multi-columns to fake pagination since browsers don’t implement paged media, which means <code>page-break-*</code> is <a href="https://caniuse.com/#feat=multicolumn">not necessarily aliased</a> to <code>column-break-*</code>. And <code>page-break-*</code> itself <a href="https://drafts.csswg.org/css-break-3/#break-between">is destined to become an alias</a> for <code>break-*</code> at some point. For maximum compatibility, we must therefore use all three.</p>
+<p class="details-para">The feature query (<code>@supports</code>) allows us to get around some bug in iBooks. At some point, declaring <code>-webkit-column-break-inside</code> in the same rule as <code>page-break-inside</code> would indeed result in both styles being ignored.</p>
+</div>
+</div>
+</section>
+
 <section class="trick" id="layout-pagebreak">
 <div class="wrapper">
 <h3>Prefer page-break-after to page-break-before</h3>
@@ -397,6 +449,13 @@ element-2 {
 
 <pre><code>element {
   page-break-after: always;
+  break-after: always;
+}
+
+@supports not ((page-break-after: always) and (break-after: always)) {
+  element {
+    -webkit-column-break-after: always;
+  }
 }
 </code></pre>
 
@@ -773,7 +832,7 @@ svg {
 </main>
 
   <footer>
-  	<p class="secondary">Version 0.26 (codename “<abbr title="Minimum Viable Product">MVP</abbr>”)<br/><a href="https://github.com/FriendsOfEpub/eBookTricks/blob/master/LICENSE">LGPLv3 Licence</a> | <a href="https://github.com/FriendsOfEpub/eBookTricks">Source</a></p>
+  	<p class="secondary">Version 0.27 (codename “<abbr title="Minimum Viable Product">MVP</abbr>”)<br/><a href="https://github.com/FriendsOfEpub/eBookTricks/blob/master/LICENSE">LGPLv3 Licence</a> | <a href="https://github.com/FriendsOfEpub/eBookTricks">Source</a></p>
     <p class="secondary">This tool is part of the <a href="https://github.com/FriendsOfEpub/Blitz">Blitz eBook Framework</a></p>
   </footer>
   
