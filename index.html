@@ -322,24 +322,18 @@ code {
 <div class="wrapper">
 <h3>Force the color of links to be text’s</h3>
 
-<div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
+<div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span></div>
 
 <pre><code>a.text-color {
   color: inherit;
   -webkit-text-fill-color: inherit;
-}
-
-@media amzn-kf8 {
-  parent a.text-color {
-    color: inherit;
-  }
-}
-</code></pre>
+}</code></pre>
 
 <h4 class="summary">Details</h4>
 <div class="details">
 <p class="details-para">Sometimes there are so many links on a page that styling them using colors may disrupt the reading experience. <a title="W3C wiki — Styling Links" href="https://www.w3.org/wiki/Styling_lists_and_links#Styling_Links">As long as users can tell it’s a link</a>, you should be OK.</p>
 <p class="details-para">If you want links to be the same color as text, you can inherit <code>color</code>. The <code>-webkit-text-fill-color</code> property forces iBooks to use the text’s color in night mode.</p>
+<p class="details-para">While this snippet should work OK in the Kindle Format 8, it won’t in Kindle Format X, and a blue color will be forced for links – there’s currently no known trick to get around this.</p>
 </div>
 </div>
 </section>
@@ -832,7 +826,7 @@ svg {
 </main>
 
   <footer>
-  	<p class="secondary">Version 0.27 (codename “<abbr title="Minimum Viable Product">MVP</abbr>”)<br/><a href="https://github.com/FriendsOfEpub/eBookTricks/blob/master/LICENSE">LGPLv3 Licence</a> | <a href="https://github.com/FriendsOfEpub/eBookTricks">Source</a></p>
+  	<p class="secondary">Version 0.28 (codename “<abbr title="Minimum Viable Product">MVP</abbr>”)<br/><a href="https://github.com/FriendsOfEpub/eBookTricks/blob/master/LICENSE">LGPLv3 Licence</a> | <a href="https://github.com/FriendsOfEpub/eBookTricks">Source</a></p>
     <p class="secondary">This tool is part of the <a href="https://github.com/FriendsOfEpub/Blitz">Blitz eBook Framework</a></p>
   </footer>
   
