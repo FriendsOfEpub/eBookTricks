@@ -36,7 +36,7 @@
   <header>
     <img class="header-icon" alt="Blitz" src="assets/blitz-16.svg"/>
 
-    <h1>Blitz eBook&nbsp;Tricks</h1>
+    <h1>Blitz ebook&nbsp;Tricks</h1>
 
     <p class="lead">A collection of <abbr title="Cascading Style Sheets">CSS</abbr> snippets to do progressive enhancement and achieve better typography, layout and <abbr title="User Experience">UX</abbr> in&nbsp;eBooks.</p>
 
@@ -827,7 +827,7 @@ svg {
 </main>
 
   <footer>
-  	<p class="secondary">Version 0.33 (codename ”Laughing Llama”)<br/><a href="https://github.com/FriendsOfEpub/eBookTricks/blob/master/LICENSE">LGPLv3 Licence</a> | <a href="https://github.com/FriendsOfEpub/eBookTricks">Source</a></p>
+  	<p class="secondary">Version 0.34<br/><a href="https://github.com/FriendsOfEpub/eBookTricks/blob/master/LICENSE">LGPLv3 Licence</a> | <a href="https://github.com/FriendsOfEpub/eBookTricks">Source</a></p>
     <p class="secondary">This tool is part of the <a href="https://github.com/FriendsOfEpub/Blitz">Blitz eBook Framework</a></p>
   </footer>
   
@@ -835,11 +835,6 @@ svg {
   <script type="text/javascript">
   if (navigator.serviceWorker) {
     navigator.serviceWorker.register('/eBookTricks/sw.js', {scope: '/eBookTricks/'})
-  }  else if ('applicationCache' in window) {
-    var iframe = document.createElement('iframe');
-    iframe.setAttribute('src', '/eBookTricks/appcache.html');
-    iframe.setAttribute('style', 'width: 0; height: 0; border: 0');
-    document.querySelector('footer').appendChild(iframe);
   }
   </script>
 </body>
