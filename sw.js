@@ -1,7 +1,7 @@
 /* https://gist.github.com/kosamari/7c5d1e8449b2fbc97d372675f16b566e */
 
 var APP_PREFIX = "blitzTricks_"
-var VERSION = "v0_34"
+var VERSION = "v1_0_0"
 var CACHE_NAME = APP_PREFIX + VERSION
 var URLS = [
   "/eBookTricks/",
