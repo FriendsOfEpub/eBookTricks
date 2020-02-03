@@ -8,12 +8,14 @@ A collection of CSS snippets to do progressive enhancement and achieve better ty
 **If you’re using a mouse/touch:**
 
 - click the “Expand/Collapse button” to toggle all details
+- click the “Copy snippet” button to copy the code to your clipboard
 - click “Details” to display more information
 
 **If you’re using a keyboard:**
 
-- press “tab” to navigate menu, details and links
-- press “enter” to display details (including toggle button)
+- press “tab” to navigate menu, “copy snippet” buttons, details, and links
+- press “enter/spacebar” to copy the code snippet
+- press “enter/spacebar” to display details (including toggle button)
 
 ### Install
 
