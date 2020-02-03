@@ -25,7 +25,7 @@ Thanks to service workers, it will even work offline on Android, Chrome, Opera o
 
 The Blitz eBook Tricks collection is part of the Blitz Project. It’s a progressive web app which aims is to help you do progressive enhancement.
 
-It is currently in v.0.34 (in other words, it’s a Minimum Viable Product) and available [on this page](https://friendsofepub.github.io/eBookTricks/).
+It is currently in v.1.0.0 and available [on this page](https://friendsofepub.github.io/eBookTricks/).
 
 ## Details
 

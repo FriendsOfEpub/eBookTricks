@@ -2,39 +2,31 @@
 
 <html lang="en">
 <head>
-	<title>Blitz Tricks — CSS tricks to improve your eBooks</title>
-  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BlitzTricks — CSS tricks to improve your eBooks</title>
+  <meta charset="utf-8">
+  <meta name="description" content="A collection of CSS snippets to do progressive enhancement and achieve better typography, layout and UX in eBooks.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="css/styles.css" />
   <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
   <!-- Favicon -->
-	<link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-	<!-- Google -->
-	<link rel="manifest" href="manifest.json">
+  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <!-- Google -->
+  <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#FAFAFA">
-	<!-- Apple -->
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="apple-mobile-web-app-title" content="BlitzTricks">
-	<link rel="apple-touch-icon" href="assets/icons/icon-512x512.png">
-	<!-- MS -->
-	<meta name="msapplication-TileImage" content="assets/icons/icon-512x512.png">
-	<meta name="msapplication-TileColor" content="#FAFAFA">
-	<meta name="application-name" content="BlitzTricks">
+  <!-- Apple -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="BlitzTricks">
+  <link rel="apple-touch-icon" href="assets/icons/icon-256x256.png">
+  <!-- MS -->
+  <meta name="msapplication-TileImage" content="assets/icons/icon-256x256.png">
+  <meta name="msapplication-TileColor" content="#FAFAFA">
+  <meta name="application-name" content="BlitzTricks">
 </head>
 <body>
-<nav class="menu">
-  <ol>
-    <li><a href="#typography">Typo</a></li>
-    <li><a href="#layout">Layout</a></li>
-    <li><a href="#images">Images</a></li>
-    <li><a href="#misc">Misc</a></li>
-  </ol>
-</nav>
-
   <header>
-    <img class="header-icon" alt="Blitz" src="assets/blitz-16.svg"/>
+    <img class="header-icon" alt="" src="assets/logo.svg"/>
 
     <h1>Blitz ebook&nbsp;Tricks</h1>
 
@@ -44,6 +36,15 @@
     
     <p class="lead"><a href="https://github.com/FriendsOfEpub/eBookTricks">Please visit the Github repo</a> if you want to report&nbsp;issues, suggest&nbsp;tricks, improve&nbsp;design or contribute&nbsp;code.</p>
   </header>
+
+  <nav class="menu">
+    <ol>
+      <li><a href="#typography">Typo</a></li>
+      <li><a href="#layout">Layout</a></li>
+      <li><a href="#images">Images</a></li>
+      <li><a href="#misc">Misc</a></li>
+    </ol>
+  </nav>
 
 <main>
 <section class="category" id="typography">
@@ -55,6 +56,7 @@
 
 <div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span></div>
 
+<div class="code-snippet">
 <pre><code>body {
   line-height: 1.5;
 }
@@ -63,6 +65,7 @@ body * {
   line-height: inherit;
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -78,10 +81,12 @@ body * {
 
 <div class="tags"><span class="tag">Kindle Format 8</span></div>
 
+<div class="code-snippet">
 <pre><code>element {
   line-height: 1.2;
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -98,6 +103,7 @@ body * {
 
 <div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle Format X</span></div>
 
+<div class="code-snippet">
 <pre><code>element {
   adobe-hyphenate: none;
   -webkit-hyphens: none;
@@ -107,6 +113,7 @@ body * {
   hyphens: none;
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -121,7 +128,8 @@ body * {
 <h3>Improve hyphenation</h3>
   
 <div class="tags"><span class="tag">EPUB3</span></div>
-  
+
+<div class="code-snippet">
 <pre><code>element {
   -webkit-hyphenate-limit-before: 3;
   -webkit-hyphenate-limit-after: 2;
@@ -131,6 +139,7 @@ body * {
   hyphenate-limit-lines: 2;
 }
 </code></pre>
+</div>
   
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -147,10 +156,12 @@ body * {
 
 <div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
 
+<div class="code-snippet">
 <pre><code>element {
   text-align: left;
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -166,6 +177,7 @@ body * {
 
 <div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
 
+<div class="code-snippet">
 <pre><code>sub {
   font-size: 0.675em;
   line-height: 1.2;
@@ -180,6 +192,7 @@ sup {
   vertical-align: 35%;
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -195,6 +208,7 @@ sup {
 
 <div class="tags"><span class="tag">EPUB3</span></div>
 
+<div class="code-snippet">
 <pre><code>body {
   font-kerning: normal;
   font-variant: common-ligatures oldstyle-nums proportional-nums;
@@ -221,6 +235,7 @@ code {
   font-feature-settings: "frac";
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -238,6 +253,7 @@ code {
 
 <div class="tags"><span class="tag">EPUB3</span></div>
 
+<div class="code-snippet">
 <pre><code>element {
   font-variant: small-caps;
 }
@@ -256,6 +272,7 @@ code {
   }
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -272,6 +289,7 @@ code {
 
 <div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
 
+<div class="code-snippet">
 <pre><code>hr.asterism {
   height: 1.5em;
   background: transparent url("../Images/asterism.svg") no-repeat center;
@@ -287,6 +305,7 @@ code {
   }
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -304,10 +323,12 @@ code {
 
 <div class="tags"><span class="tag">EPUB3</span></div>
 
+<div class="code-snippet">
 <pre><code>&lt;div class="asterism" role="separator" aria-label="Interlude"&gt;
   * * *
 &lt;/div&gt;
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -325,10 +346,12 @@ code {
 
 <div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span></div>
 
+<div class="code-snippet">
 <pre><code>a.text-color {
   color: inherit;
   -webkit-text-fill-color: inherit;
 }</code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -349,11 +372,13 @@ code {
 
 <div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
 
+<div class="code-snippet">
 <pre><code>article, aside, figure, figcaption, 
 footer, header, main, nav, section {
   display: block;
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -369,6 +394,7 @@ footer, header, main, nav, section {
 
 <div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
 
+<div class="code-snippet">
 <pre><code>element-1 {
   margin-left: {number}%;
 }
@@ -378,6 +404,7 @@ element-2 {
   padding-right: {number}%;
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -393,12 +420,14 @@ element-2 {
 
 <div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
 
+<div class="code-snippet">
 <pre><code>element {
   width: {number}%;
   margin-left: ((100 - {number}) / 2 )%;
   margin-right: ((100 - {number}) / 2 )%;
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -414,7 +443,8 @@ element-2 {
 <h3>Do not rely on page-breaks</h3>
     
 <div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span></div>
-    
+
+<div class="code-snippet">
 <pre><code>element {
   page-break-inside: avoid;
   break-inside: avoid;
@@ -426,6 +456,7 @@ element-2 {
   }
 }
 </code></pre>
+</div>
     
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -442,6 +473,7 @@ element-2 {
 
 <div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
 
+<div class="code-snippet">
 <pre><code>element {
   page-break-after: always;
   break-after: always;
@@ -453,6 +485,7 @@ element-2 {
   }
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -469,6 +502,7 @@ element-2 {
 
 <div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
 
+<div class="code-snippet">
 <pre><code>table {
   table-layout: fixed;
 }
@@ -477,6 +511,7 @@ th.third {
   width: 33%;
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -493,6 +528,7 @@ th.third {
 
 <div class="tags"><span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
 
+<div class="code-snippet">
 <pre><code>parent {
   counter-increment: elements;
 }
@@ -505,6 +541,7 @@ element:before {
   user-select: none;
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -521,6 +558,7 @@ element:before {
 
 <div class="tags"><span class="tag">EPUB3</span></div>
 
+<div class="code-snippet">
 <pre><code>@supports (display: -webkit-flex) or (display: flex) {
   ul.grid,
   ol.grid {
@@ -539,6 +577,7 @@ element:before {
   }
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -555,6 +594,7 @@ element:before {
 
 <div class="tags"><span class="tag">EPUB3</span></div>
 
+<div class="code-snippet">
 <pre><code>@supports (display: -webkit-flex) or (display: flex) {
   parent {
     min-height: 95vh;
@@ -567,6 +607,7 @@ element:before {
   }
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -584,6 +625,7 @@ element:before {
 
 <div class="tags"><span class="tag">EPUB3</span></div>
 
+<div class="code-snippet">
 <pre><code>element {
   float: left;
 }
@@ -597,6 +639,7 @@ element:before {
   }
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -617,10 +660,12 @@ element:before {
 
 <div class="tags"><span class="tag">EPUB3</span></div>
 
+<div class="code-snippet">
 <pre><code>img {
   object-fit: contain;
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -636,6 +681,7 @@ element:before {
 
 <div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span></div>
 
+<div class="code-snippet">
 <pre><code>figure {
   page-break-inside: avoid;
   break-inside: avoid;
@@ -647,6 +693,7 @@ element:before {
   }
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -662,6 +709,7 @@ element:before {
 
 <div class="tags"><span class="tag">EPUB3</span></div>
 
+<div class="code-snippet">
 <pre><code>@supports (height: calc(98vh - 5em)) {
   img {
     width: auto;
@@ -673,6 +721,7 @@ element:before {
   }
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -693,6 +742,7 @@ element:before {
 
 <div class="tags"><span class="tag">ePub2</span> <span class="tag">EPUB3</span> <span class="tag">Kindle</span></div>
 
+<div class="code-snippet">
 <pre><code>element {
   border: 1px solid currentColor;
 }
@@ -701,6 +751,7 @@ svg {
   fill: currentColor;
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -717,12 +768,14 @@ svg {
 
 <div class="tags"><span class="tag">EPUB3</span></div>
 
+<div class="code-snippet">
 <pre><code>@namespace epub "http://www.idpf.org/2007/ops";
 
 [epub|type~="toc"] {
   /* styles */
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -738,12 +791,14 @@ svg {
 
 <div class="tags"><span class="tag">EPUB3</span></div>
 
+<div class="code-snippet">
 <pre><code>@supports ({property}: {value}) {
   element {
     {property}: {value};
   }
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -761,6 +816,7 @@ svg {
 
 <div class="tags"><span class="tag">Kindle</span></div>
 
+<div class="code-snippet">
 <pre><code>@media amzn-kf8 {
   /* Specific KF8 styles (new format) */
 }
@@ -769,6 +825,7 @@ svg {
   /* Specific Mobi7 styles (old format) */
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -784,10 +841,12 @@ svg {
 
 <div class="tags"><span class="tag">EPUB3</span></div>
 
+<div class="code-snippet">
 <pre><code>@media (monochrome) {
   /* Styles */
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -805,6 +864,7 @@ svg {
 
 <div class="tags"><span class="tag">EPUB3</span></div>
 
+<div class="code-snippet">
 <pre><code>@media (pointer: coarse) {
   /* Styles for touch input */
 }
@@ -813,6 +873,7 @@ svg {
   /* Styles for mouse input */
 }
 </code></pre>
+</div>
 
 <h4 class="summary">Details</h4>
 <div class="details">
@@ -827,7 +888,8 @@ svg {
 </main>
 
   <footer>
-  	<p class="secondary">Version 0.34<br/><a href="https://github.com/FriendsOfEpub/eBookTricks/blob/master/LICENSE">LGPLv3 Licence</a> | <a href="https://github.com/FriendsOfEpub/eBookTricks">Source</a></p>
+    <p class="secondary">Version 1.0.0<br/></p>
+    <p class="secondary"><a href="https://github.com/FriendsOfEpub/eBookTricks/blob/master/LICENSE">LGPLv3 Licence</a> | <a href="https://github.com/FriendsOfEpub/eBookTricks">Source</a></p>
     <p class="secondary">This tool is part of the <a href="https://github.com/FriendsOfEpub/Blitz">Blitz eBook Framework</a></p>
   </footer>
   
