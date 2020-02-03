@@ -6,6 +6,10 @@ r(function () {
 	var snippets = document.querySelectorAll(".code-snippet");
 	var toggle = document.createElement("button");
 	var header = document.querySelector("header");
+	var nav = document.querySelector("nav");
+
+	var mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+	var noMotion = false;
 
 	// FUNCTIONS
 
@@ -24,11 +28,29 @@ r(function () {
 		toggleAria(detail);
 	};
 
+	function scrollTo(element, to, duration) {
+		if (duration <= 0) return;
+		var difference = to - element.scrollTop;
+		var perTick = difference / duration * 10;
+		setTimeout(function () {
+			element.scrollTop = element.scrollTop + perTick;
+			if (element.scrollTop == to) return;
+			scrollTo(element, to, duration - 10);
+		}, 10);
+	};
+
+	function focusNoScroll(el) {
+		var x = window.scrollX;
+		var y = window.scrollY;
+		el.focus();
+		window.scrollTo(x, y);
+	};
+
 	function getCodeSnippet(button) {
 		var parentElement = button.parentElement;
 		var codeSnippet = parentElement.querySelector("code");
 		return codeSnippet;
-	}
+	};
 
 	function copyToClipboard(button) {
 		var code = getCodeSnippet(button)
@@ -49,9 +71,21 @@ r(function () {
 		}
 
 		window.getSelection().removeAllRanges();
-	}
+	};
+
+	function changeMotionHook() {
+		if (mediaQuery.matches) {
+			noMotion = true;
+		} else {
+			noMotion = false;
+		}
+	};
 
 	// INIT (run on doc Ready)
+
+	(function initMotionHook() {
+		changeMotionHook();
+	})();
 
 	(function hideDetails() {
 		document.body.classList.add("js-enabled");
@@ -83,7 +117,9 @@ r(function () {
 		}
 	})();
 
-	// Event Listeners 
+	// Event Listeners
+
+	mediaQuery.addListener(changeMotionHook);
 
 	main.addEventListener("click", function (e) {
 		var elt = e.target;
@@ -120,6 +156,24 @@ r(function () {
 			active.click();
 		} else {
 			return;
+		}
+	});
+
+	nav.addEventListener("click", function (e) {
+		var elt = e.target;
+		var isLink = elt.tagName.toLowerCase() === "a";
+		if (isLink && elt.href) {
+			if (!noMotion) {
+				e.preventDefault();
+				var selector = "#" + elt.href.split("#")[1];
+				var section = document.querySelector(selector);
+				var sectionPadding = window.getComputedStyle(nav).getPropertyValue("height");
+				var sectionTop = section.offsetTop - parseInt(sectionPadding, 10);
+				scrollTo(document.scrollingElement, sectionTop, 600);
+				history.replaceState(undefined, undefined, selector);
+				section.setAttribute("tabindex", "-1");
+				focusNoScroll(section);
+			}
 		}
 	});
 
