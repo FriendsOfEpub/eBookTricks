@@ -1,12 +1,12 @@
 /* https://gist.github.com/kosamari/7c5d1e8449b2fbc97d372675f16b566e */
 
 var APP_PREFIX = "blitzTricks_"
-var VERSION = "v1_0_0"
+var VERSION = "v1_0_1"
 var CACHE_NAME = APP_PREFIX + VERSION
 var URLS = [
   "/eBookTricks/",
   "/eBookTricks/index.html",
-  "/eBookTricks/assets/blitz-16.svg",
+  "/eBookTricks/assets/logo.svg",
   "/eBookTricks/assets/favicon.ico",
   "/eBookTricks/css/styles.css",
   "/eBookTricks/css/print.css",
