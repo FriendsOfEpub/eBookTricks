@@ -304,13 +304,26 @@ p {}
   margin: 0;
 }
 
-pre {
+.code-snippet {
   margin: 3.6rem 0;
+}
+
+pre {
+  margin: 0;
   overflow-x: auto;
   /*  overflow-x: scroll;
     -webkit-overflow-scrolling: touch;  */
   border: 1px solid currentColor;
   padding: 1.2rem;
+}
+
+.copyButton {
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 0.6rem 1.8rem;
+  background-color: #000000;
+  color: #FAFAFA;
+  margin: 0 0 0 auto;
 }
 
 .hidden {
