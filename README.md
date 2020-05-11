@@ -4,11 +4,9 @@ A collection of CSS snippets to do progressive enhancement and achieve better ty
 
 ## Important Note
 
-We’re in the process of sunsetting the entire Blitz Project, which means this repository will reach End of Life and be archived as read-only on September 1, 2020. Don’t worry, all current and future forks will continue to work after this date.
+We’re in the process of sunsetting the entire Blitz Project, which means this repository will reach End of Life and be archived as read-only on July 1, 2020. Don’t worry, all current and future forks will continue to work after this date.
 
 If you are interested in the sunsetting roadmap, or taking over this repository’s maintenance and development, please [check the related meta issue in Blitz](https://github.com/FriendsOfEpub/Blitz/issues/66).
-
-Call for new maintainers ends June 15, 2020.
 
 ## How-to
 
